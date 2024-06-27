@@ -14,11 +14,11 @@ import { StatRangeModule } from './domain/stat-range/stat-range.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: '168.138.153.127',
-      port: 3306,
-      username: 'dinos',
-      password: 'Rio#220515',
-      database: 'dinos',
+      host: '',
+      port: 0,
+      username: '',
+      password: '',
+      database: '',
       entities: ['dist/domain/category/**/*.entities{.ts,.js}'],
       synchronize: true,
     }),
