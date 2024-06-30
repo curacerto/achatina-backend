@@ -1,27 +1,34 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { CategoryModule } from './domain/category/category.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { getTypeOrmConfig } from './infrastructure/config';
+
+import { CategoryModule } from './domain/category/category.module';
 import { DinosaurModule } from './domain/dinosaur/dinosaur.module';
 import { DinosaurCategoryModule } from './domain/dinosaur-category/dinosaur-category.module';
 import { DinoRangeCountModule } from './domain/dino-range-count/dino-range-count.module';
 import { StatCountModule } from './domain/stat-count/stat-count.module';
 import { StatRangeModule } from './domain/stat-range/stat-range.module';
 
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: '',
-      port: 0,
-      username: '',
-      password: '',
-      database: '',
-      entities: ['dist/domain/category/**/*.entities{.ts,.js}'],
-      synchronize: true,
-    }),
+    ConfigModule.forRoot(
+      {
+        isGlobal: true,
+        envFilePath: '.env',
+      },
+    ),
+    TypeOrmModule.forRootAsync(
+      {
+        imports: [ConfigModule],
+        inject: [ConfigService],
+        useFactory: getTypeOrmConfig,
+      },
+    ),
     CategoryModule,
     DinosaurModule,
     DinosaurCategoryModule,
