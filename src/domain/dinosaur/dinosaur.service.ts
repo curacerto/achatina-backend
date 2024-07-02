@@ -1,26 +1,41 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { CreateDinosaurDto } from './dto/create-dinosaur.dto';
 import { UpdateDinosaurDto } from './dto/update-dinosaur.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Dinosaur } from './entities/dinosaur.entity';
 
 @Injectable()
 export class DinosaurService {
-  create(createDinosaurDto: CreateDinosaurDto) {
-    return 'This action adds a new dinosaur';
+
+  constructor(
+    @InjectRepository(Dinosaur)
+    private dinosaurRepository: Repository<Dinosaur>,
+  ) {
   }
 
-  findAll() {
-    return `This action returns all dinosaur`;
+  create(createDinosaurDto: CreateDinosaurDto): Promise<Dinosaur> {
+    return this.dinosaurRepository.save(createDinosaurDto);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} dinosaur`;
+  findAll(): Promise<Dinosaur[]> {
+    return this.dinosaurRepository.find();
   }
 
-  update(id: number, updateDinosaurDto: UpdateDinosaurDto) {
-    return `This action updates a #${id} dinosaur`;
+  findOne(id: number): Promise<Dinosaur> {
+    const dinosaur = this.dinosaurRepository.findOne({ where: { id } });
+    if (!dinosaur) {
+      throw new HttpException('Dinosaur not found', 404);
+    }
+    return dinosaur;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} dinosaur`;
+  async update(id: number, updateDinosaurDto: UpdateDinosaurDto) {
+    await this.dinosaurRepository.update(id, updateDinosaurDto);
+    return this.dinosaurRepository.findOne({ where: { id } });
+  }
+
+  async remove(id: number) {
+    await this.dinosaurRepository.delete(id);
   }
 }

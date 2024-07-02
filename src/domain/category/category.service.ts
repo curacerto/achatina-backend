@@ -14,8 +14,7 @@ export class CategoryService {
   }
 
   create(createCategoryDto: CreateCategoryDto): Promise<Category> {
-    const category = this.categoryRepository.create(createCategoryDto);
-    return this.categoryRepository.save(category);
+    return this.categoryRepository.save(createCategoryDto);
   }
 
   findAll(): Promise<Category[]> {
@@ -31,7 +30,7 @@ export class CategoryService {
   }
 
   async update(id: number, updateCategoryDto: UpdateCategoryDto): Promise<Category> {
-    this.categoryRepository.create(updateCategoryDto);
+    await this.categoryRepository.update(id, updateCategoryDto);
     return this.categoryRepository.findOne({ where: { id } });
   }
 
