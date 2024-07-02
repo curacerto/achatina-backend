@@ -1,6 +1,5 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { CreateDinosaurDto } from './dto/create-dinosaur.dto';
-import { UpdateDinosaurDto } from './dto/update-dinosaur.dto';
+import { CreateDinosaurDto, UpdateDinosaurDto } from './dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Dinosaur } from './entities/dinosaur.entity';
