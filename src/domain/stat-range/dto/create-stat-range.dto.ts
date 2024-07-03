@@ -1,1 +1,5 @@
-export class CreateStatRangeDto {}
+export class CreateStatRangeDto {
+  name: string;
+  minimum: number;
+  maximum: number;
+}

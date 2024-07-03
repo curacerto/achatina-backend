@@ -9,3 +9,7 @@ GET http://localhost:3000/dinosaur
 ### Get all stats count
 
 GET http://localhost:3000/stat-count
+
+### Get all stats range
+
+GET http://localhost:3000/stat-range
