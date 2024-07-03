@@ -1,0 +1,11 @@
+### Get all categories
+
+GET http://localhost:3000/category
+
+### Get all dinosaurs
+
+GET http://localhost:3000/dinosaur
+
+### Get all stats count
+
+GET http://localhost:3000/stat-count

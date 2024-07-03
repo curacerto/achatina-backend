@@ -1,1 +1,4 @@
-export class CreateStatCountDto {}
+export class CreateStatCountDto {
+  name: string;
+  stat_count: number;
+}
