@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDinosaurCategoryDto } from './dto/create-dinosaur-category.dto';
 import { UpdateDinosaurCategoryDto } from './dto/update-dinosaur-category.dto';
+import { DinosaurCategory } from './entities/dinosaur-category.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class DinosaurCategoryService {
-  create(createDinosaurCategoryDto: CreateDinosaurCategoryDto) {
-    return 'This action adds a new dinosaurCategory';
+
+  constructor(
+    @InjectRepository(DinosaurCategory)
+    private readonly dinosaurCategoryRepository: Repository<DinosaurCategory>,
+  ) {
   }
 
-  findAll() {
-    return `This action returns all dinosaurCategory`;
+  create(createDinosaurCategoryDto: CreateDinosaurCategoryDto): Promise<DinosaurCategory> {
+    return this.dinosaurCategoryRepository.save(createDinosaurCategoryDto);
+  }
+
+  findAll(): Promise<DinosaurCategory[]> {
+    return this.dinosaurCategoryRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} dinosaurCategory`;
+    return this.dinosaurCategoryRepository.findOne({ where: { id } });
   }
 
-  update(id: number, updateDinosaurCategoryDto: UpdateDinosaurCategoryDto) {
-    return `This action updates a #${id} dinosaurCategory`;
+  async update(id: number, updateDinosaurCategoryDto: UpdateDinosaurCategoryDto): Promise<DinosaurCategory> {
+    await this.dinosaurCategoryRepository.update(id, updateDinosaurCategoryDto);
+    return this.dinosaurCategoryRepository.findOne({ where: { id } });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} dinosaurCategory`;
+  async remove(id: number): Promise<void> {
+    await this.dinosaurCategoryRepository.delete(id);
   }
 }

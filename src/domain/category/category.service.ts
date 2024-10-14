@@ -34,7 +34,7 @@ export class CategoryService {
     return this.categoryRepository.findOne({ where: { id } });
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<void> {
     await this.categoryRepository.delete(id);
   }
 }

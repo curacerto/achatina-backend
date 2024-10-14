@@ -34,7 +34,7 @@ export class DinosaurService {
     return this.dinosaurRepository.findOne({ where: { id } });
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<void> {
     await this.dinosaurRepository.delete(id);
   }
 }

@@ -13,3 +13,8 @@ GET http://localhost:3000/stat-count
 ### Get all stats range
 
 GET http://localhost:3000/stat-range
+
+### Get all dinosaurs with category
+
+GET http://localhost:3000/dinosaur-category
+

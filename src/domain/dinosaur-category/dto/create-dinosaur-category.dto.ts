@@ -1,1 +1,4 @@
-export class CreateDinosaurCategoryDto {}
+export class CreateDinosaurCategoryDto {
+  dinosaurId: number;
+  categoryId: number;
+}

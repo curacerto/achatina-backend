@@ -9,5 +9,5 @@ export const getTypeOrmConfig = (configService: ConfigService): TypeOrmModuleOpt
   password: configService.get('DATABASE_PASSWORD'),
   database: configService.get('DATABASE_NAME'),
   entities: ['dist/domain/**/*.entity{.ts,.js}'],
-  synchronize: true,
+  synchronize: false,
 });

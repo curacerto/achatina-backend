@@ -31,7 +31,7 @@ export class StatCountService {
     return this.statCountRepository.findOne({ where: { id } });
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<void> {
     await this.statCountRepository.delete(id);
   }
 }

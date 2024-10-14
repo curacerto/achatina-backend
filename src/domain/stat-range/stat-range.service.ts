@@ -31,7 +31,7 @@ export class StatRangeService {
     return this.statRangeRepository.findOne({ where: { id } });
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<void> {
     await this.statRangeRepository.delete(id);
   }
 }
