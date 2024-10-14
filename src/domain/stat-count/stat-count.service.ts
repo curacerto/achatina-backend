@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateStatCountDto } from './dto/create-stat-count.dto';
-import { UpdateStatCountDto } from './dto/update-stat-count.dto';
+import { CreateStatCountDto, UpdateStatCountDto } from './dto';
 import { StatCount } from './entities/stat-count.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';

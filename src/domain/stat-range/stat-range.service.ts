@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateStatRangeDto } from './dto/create-stat-range.dto';
-import { UpdateStatRangeDto } from './dto/update-stat-range.dto';
+import { CreateStatRangeDto, UpdateStatRangeDto } from './dto';
 import { StatRange } from './entities/stat-range.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
