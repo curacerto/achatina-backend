@@ -28,7 +28,4 @@ export class PriceTableRepository {
     return this.manager.query(query);
   }
 
-  findOne(id: number) {
-    return null;
-  }
 }

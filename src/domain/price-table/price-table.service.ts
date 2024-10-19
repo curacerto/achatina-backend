@@ -13,7 +13,4 @@ export class PriceTableService {
     return this.priceTableRepository.findAll();
   }
 
-  findOne(id: number): Promise<PriceTableDto> {
-    return null;
-  }
 }
