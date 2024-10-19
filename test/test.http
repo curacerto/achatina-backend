@@ -18,3 +18,7 @@ GET http://localhost:3000/stat-range
 
 GET http://localhost:3000/dinosaur-category
 
+### Get all price table items
+
+GET http://localhost:3000/price-table
+
