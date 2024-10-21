@@ -10,9 +10,4 @@ export class PriceTableController {
   findAll() {
     return this.priceTableService.findAll();
   }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.priceTableService.findOne(+id);
-  }
 }

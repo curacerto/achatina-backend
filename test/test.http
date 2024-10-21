@@ -22,3 +22,7 @@ GET http://localhost:3000/dinosaur-category
 
 GET http://localhost:3000/price-table
 
+### Get all stat categories
+
+GET http://localhost:3000/stat-category
+

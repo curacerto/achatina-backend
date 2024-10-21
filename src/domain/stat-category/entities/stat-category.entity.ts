@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Dinosaur {
+export class StatCategory {
 
   @PrimaryGeneratedColumn()
   id: number;
@@ -10,6 +10,6 @@ export class Dinosaur {
   name: string;
 
   @Column('int')
-  stat_category_id: number;
+  multiplier: number;
 
 }

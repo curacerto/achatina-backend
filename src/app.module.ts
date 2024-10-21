@@ -14,6 +14,7 @@ import { StatRangeModule } from './domain/stat-range/stat-range.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PriceTableModule } from './domain/price-table/price-table.module';
+import { StatCategoryModule } from './domain/stat-category/stat-category.module';
 
 @Module({
   imports: [
@@ -36,7 +37,8 @@ import { PriceTableModule } from './domain/price-table/price-table.module';
     DinoRangeCountModule,
     StatCountModule,
     StatRangeModule,
-    PriceTableModule
+    PriceTableModule,
+    StatCategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
