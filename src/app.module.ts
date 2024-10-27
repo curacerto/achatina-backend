@@ -15,6 +15,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PriceTableModule } from './domain/price-table/price-table.module';
 import { StatCategoryModule } from './domain/stat-category/stat-category.module';
+import { ResourceModule } from './domain/resource/resource.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { StatCategoryModule } from './domain/stat-category/stat-category.module'
     StatRangeModule,
     PriceTableModule,
     StatCategoryModule,
+    ResourceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
