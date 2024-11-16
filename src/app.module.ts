@@ -16,6 +16,7 @@ import { AppService } from './app.service';
 import { PriceTableModule } from './domain/price-table/price-table.module';
 import { StatCategoryModule } from './domain/stat-category/stat-category.module';
 import { ResourceModule } from './domain/resource/resource.module';
+import { PlayerModule } from './domain/player/player.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { ResourceModule } from './domain/resource/resource.module';
     PriceTableModule,
     StatCategoryModule,
     ResourceModule,
+    PlayerModule
   ],
   controllers: [AppController],
   providers: [AppService],

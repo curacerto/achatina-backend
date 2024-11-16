@@ -16,4 +16,14 @@ export class PlayerController {
     return this.playerService.findOne(+id);
   }
 
+  @Get('discord/:discordId')
+  findByDiscordId(@Param('discordId') discordId: string) {
+    return this.playerService.findByDiscordId(discordId);
+  }
+
+  @Get('discord/:discordId/update')
+  findByDiscordIdAndUpdate(@Param('discordId') discordId: string) {
+    return this.playerService.findByDiscordIdAndUpdate(discordId);
+  }
+
 }
