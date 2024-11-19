@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Player } from './entities/player.entity';
@@ -11,22 +11,22 @@ export class PlayerService {
 
   constructor(
     @InjectRepository(Player)
-    private readonly userRepository: Repository<Player>,
+    private readonly playerRepository: Repository<Player>,
     private readonly httpService: HttpService,
     private readonly configService: ConfigService,
   ) {
   }
 
   findAll(): Promise<Player[]> {
-    return this.userRepository.find();
+    return this.playerRepository.find();
   }
 
   findOne(id: number): Promise<Player> {
-    return this.userRepository.findOne({ where: { id } });
+    return this.playerRepository.findOne({ where: { id } });
   }
 
   findByDiscordId(discordId: string): Promise<Player> {
-    return this.userRepository.findOne({ where: { discordId } });
+    return this.playerRepository.findOne({ where: { discordId } });
   }
 
   async findByDiscordIdAndUpdate(discordId: string): Promise<Player> {
@@ -41,7 +41,7 @@ export class PlayerService {
       );
       console.log(response.data);
 
-      const player = await this.userRepository.findOne({ where: { discordId } });
+      const player = await this.playerRepository.findOne({ where: { discordId } });
       if (player) {
         if (!player.arkId && response.data.netId) {
           player.arkId = response.data.netId;
@@ -52,7 +52,7 @@ export class PlayerService {
         if (!player.name && response.data.discordUsername) {
           player.name = response.data.discordUsername;
         }
-        await this.userRepository.save(player);
+        await this.playerRepository.save(player);
       }
       return player;
     } catch (error) {
@@ -69,4 +69,31 @@ export class PlayerService {
     });
   }
 
+  async transfer(senderId: string, receiverId: string, amount: number): Promise<void> {
+    console.log('Transfer', senderId, receiverId, amount);
+    const sender: Player = await this.playerRepository.findOne({ where: { discordId: senderId } });
+    const receiver: Player = await this.playerRepository.findOne({ where: { discordId: receiverId } });
+
+    if (!sender) {
+      throw new HttpException('Sender not found', 404);
+    }
+    if (!receiver) {
+      throw new HttpException('Receiver not found', 404);
+    }
+    if (sender.balance < amount) {
+      throw new HttpException('Insufficient balance', 400);
+    }
+    if (senderId === receiverId) {
+      throw new HttpException('Sender cannot be receiver', 400);
+    }
+    if (amount < 0) {
+      throw new HttpException('Amount cannot be negative', 400);
+    }
+
+    sender.balance -= amount;
+    receiver.balance += amount;
+
+    await this.playerRepository.save(sender);
+    await this.playerRepository.save(receiver);
+  }
 }

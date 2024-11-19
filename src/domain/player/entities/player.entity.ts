@@ -14,6 +14,6 @@ export class Player {
   @Column({ length: 128, name: 'discord_id' })
   discordId: string;
 
-  @Column()
+  @Column({ type: 'float', default: 0 })
   balance: number;
 }

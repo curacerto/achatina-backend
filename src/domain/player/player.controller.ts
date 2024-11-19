@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { PlayerService } from './player.service';
 
 @Controller('player')
@@ -24,6 +24,11 @@ export class PlayerController {
   @Get('discord/:discordId/update')
   findByDiscordIdAndUpdate(@Param('discordId') discordId: string) {
     return this.playerService.findByDiscordIdAndUpdate(discordId);
+  }
+
+  @Post('transfer')
+  async transfer(@Body('senderId') senderId: string, @Body('receiverId') receiverId: string, @Body('amount') amount: number) {
+    await this.playerService.transfer(senderId, receiverId, amount);
   }
 
 }
