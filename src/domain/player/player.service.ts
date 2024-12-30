@@ -5,17 +5,17 @@ import { Player } from './entities/player.entity';
 import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
 import { catchError, lastValueFrom } from 'rxjs';
+import { TransferService } from '../transfer/transfer.service';
 
 @Injectable()
 export class PlayerService {
-
   constructor(
     @InjectRepository(Player)
     private readonly playerRepository: Repository<Player>,
     private readonly httpService: HttpService,
     private readonly configService: ConfigService,
-  ) {
-  }
+    private readonly transferService: TransferService,
+  ) {}
 
   findAll(): Promise<Player[]> {
     return this.playerRepository.find();
@@ -33,7 +33,7 @@ export class PlayerService {
     try {
       const response = await lastValueFrom(
         this.getDiscordUser(discordId).pipe(
-          catchError(error => {
+          catchError((error) => {
             console.error('Error fetching Discord user:', error);
             throw error;
           }),
@@ -41,7 +41,9 @@ export class PlayerService {
       );
       console.log(response.data);
 
-      const player = await this.playerRepository.findOne({ where: { discordId } });
+      const player = await this.playerRepository.findOne({
+        where: { discordId },
+      });
       if (player) {
         if (!player.arkId && response.data.netId) {
           player.arkId = response.data.netId;
@@ -61,18 +63,29 @@ export class PlayerService {
   }
 
   getDiscordUser(discordId: string) {
-    let api_key = this.configService.get('API_KEY');
-    return this.httpService.get(`https://asa-bot.info/api/public/playerRegistration/discordId/${discordId}`, {
-      headers: {
-        Authorization: `BOT ${api_key}`,
+    const api_key = this.configService.get('API_KEY');
+    return this.httpService.get(
+      `https://asa-bot.info/api/public/playerRegistration/discordId/${discordId}`,
+      {
+        headers: {
+          Authorization: `BOT ${api_key}`,
+        },
       },
-    });
+    );
   }
 
-  async transfer(senderId: string, receiverId: string, amount: number): Promise<void> {
+  async transfer(
+    senderId: string,
+    receiverId: string,
+    amount: number,
+  ): Promise<void> {
     console.log('Transfer', senderId, receiverId, amount);
-    const sender: Player = await this.playerRepository.findOne({ where: { discordId: senderId } });
-    const receiver: Player = await this.playerRepository.findOne({ where: { discordId: receiverId } });
+    const sender: Player = await this.playerRepository.findOne({
+      where: { discordId: senderId },
+    });
+    const receiver: Player = await this.playerRepository.findOne({
+      where: { discordId: receiverId },
+    });
 
     if (!sender) {
       throw new HttpException('Sender not found', 404);
@@ -95,5 +108,6 @@ export class PlayerService {
 
     await this.playerRepository.save(sender);
     await this.playerRepository.save(receiver);
+    await this.transferService.transfer(senderId, receiverId, amount);
   }
 }
