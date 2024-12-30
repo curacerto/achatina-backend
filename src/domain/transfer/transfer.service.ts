@@ -9,6 +9,7 @@ export class TransferService {
   constructor(
     @InjectRepository(Transfer)
     private readonly transferRepository: Repository<Transfer>,
+    @InjectRepository(Player)
     private readonly playerRepository: Repository<Player>,
   ) {}
 
