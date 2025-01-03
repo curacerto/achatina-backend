@@ -29,6 +29,9 @@ GET http://localhost:3000/stat-category
 ### Get balance
 GET http://localhost:3000/player/discord/727664382284267631/update
 
+### Get balance peido
+GET http://localhost:3000/player/discord/358220072902459395/update
+
 ### Post a transfer
 POST http://localhost:3000/player/transfer
 Content-Type: application/json
