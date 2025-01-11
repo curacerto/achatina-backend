@@ -8,8 +8,7 @@ export class ResourceService {
   constructor(
     @InjectRepository(Resource)
     private resourceRepository: Repository<Resource>,
-  ) {
-  }
+  ) {}
 
   findAll(): Promise<Resource[]> {
     return this.resourceRepository.find();

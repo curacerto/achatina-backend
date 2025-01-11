@@ -9,5 +9,4 @@ import { Resource } from './entities/resource.entity';
   controllers: [ResourceController],
   providers: [ResourceService],
 })
-export class ResourceModule {
-}
+export class ResourceModule {}
