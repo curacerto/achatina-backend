@@ -2,7 +2,6 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Resource {
-
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -18,4 +17,9 @@ export class Resource {
   @Column('int')
   price: number;
 
+  @Column({ length: 256 })
+  msg_id: string;
+
+  @Column({ length: 256 })
+  resource_id: string;
 }
