@@ -45,4 +45,12 @@ Content-Type: application/json
 ### Get all resources
 GET http://localhost:3000/resource
 
+### Patch resource
+PATCH http://localhost:3000/resource/1
+Content-Type: application/json
+
+{
+  "msg_id": 100
+}
+
 
