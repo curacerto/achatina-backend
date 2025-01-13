@@ -13,4 +13,13 @@ export class ResourceService {
   findAll(): Promise<Resource[]> {
     return this.resourceRepository.find();
   }
+
+  async update(
+    idString: string,
+    updateData: Partial<Resource>,
+  ): Promise<Resource> {
+    const id: number = parseInt(idString);
+    await this.resourceRepository.update(id, updateData);
+    return this.resourceRepository.findOne({ where: { id } });
+  }
 }
