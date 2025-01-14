@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto';
 
@@ -9,5 +9,10 @@ export class OrderController {
   @Post()
   create(@Body() createOrderDto: CreateOrderDto) {
     return this.orderService.create(createOrderDto);
+  }
+
+  @Get('map-pending/:player_id')
+  getMapPendingOrdersByPlayerId(player_id: number) {
+    return this.orderService.getMapPendingOrdersByPlayerId(player_id);
   }
 }
