@@ -11,9 +11,14 @@ export class ResourceController {
     return this.resourceService.findAll();
   }
 
-  @Get(':resourceId')
-  findOne(@Param('resourceId') resourceId: string) {
+  @Get('resource-id/:resourceId')
+  findOneByResourceId(@Param('resourceId') resourceId: string) {
     return this.resourceService.findByResourceId(resourceId);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: number) {
+    return this.resourceService.findById(id);
   }
 
   @Patch(':id')

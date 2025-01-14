@@ -21,6 +21,10 @@ export class ResourceService {
     });
   }
 
+  findById(id: number): Promise<Resource> {
+    return this.resourceRepository.findOne({ where: { id } });
+  }
+
   async update(
     idString: string,
     updateData: Partial<Resource>,
