@@ -11,6 +11,9 @@ export class Order {
   @Column('int')
   resource_id: number;
 
+  @Column({ length: 256 })
+  msg_id: string;
+
   @Column('int')
   amount: number;
 

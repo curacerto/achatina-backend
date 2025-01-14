@@ -60,6 +60,7 @@ Content-Type: application/json
 {
   "player_id": 1,
   "resource_id": 1,
+  "msg_id": "12345678901234567890",
   "amount": 1,
   "price": 1000,
   "total": 1000,
