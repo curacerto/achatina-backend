@@ -17,22 +17,19 @@ import { PriceTableModule } from './domain/price-table/price-table.module';
 import { StatCategoryModule } from './domain/stat-category/stat-category.module';
 import { ResourceModule } from './domain/resource/resource.module';
 import { PlayerModule } from './domain/player/player.module';
+import { OrderModule } from './domain/order/order.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(
-      {
-        isGlobal: true,
-        envFilePath: '.env',
-      },
-    ),
-    TypeOrmModule.forRootAsync(
-      {
-        imports: [ConfigModule],
-        inject: [ConfigService],
-        useFactory: getTypeOrmConfig,
-      },
-    ),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: getTypeOrmConfig,
+    }),
     CategoryModule,
     DinosaurModule,
     DinosaurCategoryModule,
@@ -42,10 +39,10 @@ import { PlayerModule } from './domain/player/player.module';
     PriceTableModule,
     StatCategoryModule,
     ResourceModule,
-    PlayerModule
+    PlayerModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-}
+export class AppModule {}

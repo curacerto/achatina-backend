@@ -53,4 +53,17 @@ Content-Type: application/json
   "msg_id": 100
 }
 
+### Post order
+POST http://localhost:3000/order
+Content-Type: application/json
+
+{
+  "player_id": 1,
+  "resource_id": 1,
+  "amount": 1,
+  "price": 1000,
+  "total": 1000,
+  "status": "pending"
+}
+
 
