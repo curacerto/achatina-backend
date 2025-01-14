@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto';
+import { Order } from './entities/order.entity';
 
 @Controller('order')
 export class OrderController {
@@ -14,5 +15,10 @@ export class OrderController {
   @Get('map-pending/:player_id')
   getMapPendingOrdersByPlayerId(player_id: number) {
     return this.orderService.getMapPendingOrdersByPlayerId(player_id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateData: Partial<Order>) {
+    return this.orderService.update(id, updateData);
   }
 }
