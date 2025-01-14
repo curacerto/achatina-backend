@@ -12,8 +12,9 @@ export class OrderService {
     private orderRepository: Repository<Order>,
   ) {}
 
-  create(createOrderDto: CreateOrderDto): Promise<Order> {
-    return this.orderRepository.save(createOrderDto);
+  async create(createOrderDto: CreateOrderDto): Promise<Order> {
+    const order = this.orderRepository.create(createOrderDto);
+    return await this.orderRepository.save(order);
   }
 
   getMapPendingOrdersByPlayerId(player_id: number): Promise<Order[]> {
