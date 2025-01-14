@@ -11,6 +11,11 @@ export class ResourceController {
     return this.resourceService.findAll();
   }
 
+  @Get(':resourceId')
+  findOne(@Param('resourceId') resourceId: string) {
+    return this.resourceService.findByResourceId(resourceId);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateData: Partial<Resource>) {
     return this.resourceService.update(id, updateData);

@@ -15,6 +15,12 @@ export class ResourceService {
     return this.resourceRepository.find();
   }
 
+  findByResourceId(resourceId: string): Promise<Resource> {
+    return this.resourceRepository.findOne({
+      where: { resource_id: resourceId },
+    });
+  }
+
   async update(
     idString: string,
     updateData: Partial<Resource>,
