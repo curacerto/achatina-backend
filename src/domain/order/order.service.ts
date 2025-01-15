@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Order } from './entities/order.entity';
 import { CreateOrderDto } from './dto';
-import { StatusEnumerator } from './constant/status.enumerator';
 
 @Injectable()
 export class OrderService {
@@ -17,11 +16,14 @@ export class OrderService {
     return await this.orderRepository.save(order);
   }
 
-  getMapPendingOrdersByPlayerId(player_id: number): Promise<Order[]> {
+  getStatusOrdersByPlayerId(
+    player_id: number,
+    status: string,
+  ): Promise<Order[]> {
     return this.orderRepository.find({
       where: {
         player_id: player_id,
-        status: StatusEnumerator.status.MAP_PENDING,
+        status: status,
       },
     });
   }

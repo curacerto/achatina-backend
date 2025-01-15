@@ -12,9 +12,12 @@ export class OrderController {
     return this.orderService.create(createOrderDto);
   }
 
-  @Get('map-pending/:player_id')
-  getMapPendingOrdersByPlayerId(player_id: number) {
-    return this.orderService.getMapPendingOrdersByPlayerId(player_id);
+  @Get('player/:player_id/status/:status')
+  getMapPendingOrdersByPlayerId(
+    player_id: number,
+    status: string,
+  ): Promise<Order[]> {
+    return this.orderService.getStatusOrdersByPlayerId(player_id, status);
   }
 
   @Patch(':id')
