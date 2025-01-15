@@ -3,6 +3,6 @@ export class TransferTypeEnumerator {
     DEPOSIT_ASA_BOT: 'deposit-asa-bot',
     DONATION: 'donation',
     TRANSFER: 'transfer',
-    BUY: 'buy',
+    ORDER: 'order',
   };
 }
