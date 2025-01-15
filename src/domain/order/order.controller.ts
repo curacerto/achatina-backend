@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto';
 import { Order } from './entities/order.entity';
@@ -12,12 +20,13 @@ export class OrderController {
     return this.orderService.create(createOrderDto);
   }
 
-  @Get('player/:player_id/status/:status')
+  @Get('player/:player_id/status')
   getMapPendingOrdersByPlayerId(
-    player_id: number,
-    status: string,
+    @Param('player_id') player_id: number,
+    @Query('status') status: string,
   ): Promise<Order[]> {
-    return this.orderService.getStatusOrdersByPlayerId(player_id, status);
+    const statusList = status.split(',');
+    return this.orderService.getStatusOrdersByPlayerId(player_id, statusList);
   }
 
   @Patch(':id')

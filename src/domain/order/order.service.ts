@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Order } from './entities/order.entity';
 import { CreateOrderDto } from './dto';
 
@@ -18,12 +18,12 @@ export class OrderService {
 
   getStatusOrdersByPlayerId(
     player_id: number,
-    status: string,
+    status: string[],
   ): Promise<Order[]> {
     return this.orderRepository.find({
       where: {
         player_id: player_id,
-        status: status,
+        status: In(status),
       },
     });
   }
