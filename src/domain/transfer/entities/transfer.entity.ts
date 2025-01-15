@@ -14,6 +14,9 @@ export class Transfer {
   @Column({ type: 'float', default: 0 })
   amount: number;
 
+  @Column({ type: 'varchar', length: 100 })
+  transfer_type: string;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
 }

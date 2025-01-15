@@ -17,8 +17,9 @@ export class TransferService {
     senderId: string,
     receiverId: string,
     amount: number,
+    transferType: string,
   ): Promise<void> {
-    console.log('Transfer', senderId, receiverId, amount);
+    console.log('Transfer', senderId, receiverId, amount, transferType);
     const sender: Player = await this.playerRepository.findOne({
       where: { discordId: senderId },
     });
@@ -30,6 +31,7 @@ export class TransferService {
     transfer.source_id = sender.id;
     transfer.target_id = receiver.id;
     transfer.amount = amount;
+    transfer.transfer_type = transferType;
 
     await this.transferRepository.save(transfer);
   }

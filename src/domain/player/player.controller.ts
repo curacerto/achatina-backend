@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PlayerService } from './player.service';
 
 @Controller('player')
@@ -30,7 +30,13 @@ export class PlayerController {
     @Body('senderId') senderId: string,
     @Body('receiverId') receiverId: string,
     @Body('amount') amount: number,
+    @Body('transferType') transferType: string,
   ) {
-    await this.playerService.transfer(senderId, receiverId, amount);
+    await this.playerService.transfer(
+      senderId,
+      receiverId,
+      amount,
+      transferType,
+    );
   }
 }
