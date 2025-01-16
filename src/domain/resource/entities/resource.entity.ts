@@ -22,4 +22,7 @@ export class Resource {
 
   @Column({ length: 256 })
   resource_id: string;
+
+  @Column({ length: 256 })
+  blueprint: string;
 }

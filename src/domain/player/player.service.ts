@@ -63,7 +63,7 @@ export class PlayerService {
   }
 
   getDiscordUser(discordId: string) {
-    const api_key = this.configService.get('API_KEY');
+    const api_key = this.configService.get('ASA_BOT_API_KEY');
     return this.httpService.get(
       `https://asa-bot.info/api/public/playerRegistration/discordId/${discordId}`,
       {
