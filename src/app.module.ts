@@ -18,6 +18,7 @@ import { StatCategoryModule } from './domain/stat-category/stat-category.module'
 import { ResourceModule } from './domain/resource/resource.module';
 import { PlayerModule } from './domain/player/player.module';
 import { OrderModule } from './domain/order/order.module';
+import { AdminModule } from './domain/admin/admin.module';
 
 @Module({
   imports: [
@@ -41,8 +42,10 @@ import { OrderModule } from './domain/order/order.module';
     ResourceModule,
     PlayerModule,
     OrderModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+}
