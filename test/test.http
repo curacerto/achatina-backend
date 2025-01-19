@@ -67,4 +67,13 @@ Content-Type: application/json
   "status": "pending"
 }
 
+### Get admin
+GET http://localhost:3000/admin
 
+### Patch admin
+PATCH http://localhost:3000/admin/1
+Content-Type: application/json
+
+{
+  "msg_id": "100"
+}
