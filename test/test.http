@@ -71,7 +71,7 @@ Content-Type: application/json
 GET http://localhost:3000/admin
 
 ### Patch admin
-PATCH http://localhost:3000/admin/1
+PATCH http://localhost:3000/admin
 Content-Type: application/json
 
 {
