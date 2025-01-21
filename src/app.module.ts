@@ -19,6 +19,7 @@ import { ResourceModule } from './domain/resource/resource.module';
 import { PlayerModule } from './domain/player/player.module';
 import { OrderModule } from './domain/order/order.module';
 import { AdminModule } from './domain/admin/admin.module';
+import { PlayerSoulModule } from './domain/player-soul/player-soul.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { AdminModule } from './domain/admin/admin.module';
     PlayerModule,
     OrderModule,
     AdminModule,
+    PlayerSoulModule,
   ],
   controllers: [AppController],
   providers: [AppService],

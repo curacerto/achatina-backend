@@ -1,16 +1,13 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Admin {
+export class Kit {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ length: 256 })
-  admin_msg_id: string;
+  name: string;
 
-  @Column({ length: 256 })
-  soul_msg_id: string;
-
-  @Column({ length: 256 })
-  admin_id: string;
+  @Column('int')
+  price: number;
 }

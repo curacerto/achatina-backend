@@ -10,6 +10,10 @@ export class CreateOrderDto {
   resource_id: number;
 
   @IsNotEmpty()
+  @IsNumber()
+  kit_id: number;
+
+  @IsNotEmpty()
   @IsString()
   msg_id: string;
 

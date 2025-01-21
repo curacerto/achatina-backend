@@ -14,7 +14,7 @@ export class AdminService {
   ) {
   }
 
-  async updateMsgId(msgId: string): Promise<Admin> {
+  async updateMsgId(adminMsgId: string, soulMsgId: string): Promise<Admin> {
     const admin = await this.adminRepository.findOne({ where: { admin_id: this.adminId } });
     console.log('Admin before update:', admin);
 
@@ -22,7 +22,8 @@ export class AdminService {
       throw new Error(`Admin with id ${this.adminId} not found`);
     }
 
-    admin.msg_id = msgId;
+    admin.admin_msg_id = adminMsgId;
+    admin.soul_msg_id = soulMsgId;
     await this.adminRepository.save(admin);
     return this.adminRepository.findOne({ where: { admin_id: this.adminId } });
   }

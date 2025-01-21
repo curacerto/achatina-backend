@@ -7,8 +7,8 @@ export class AdminController {
   }
 
   @Patch()
-  create(@Body() body: { msg_id: string }) {
-    return this.adminService.updateMsgId(body.msg_id);
+  create(@Body() body: { admin_msg_id: string, soul_msg_id: string }) {
+    return this.adminService.updateMsgId(body.admin_msg_id, body.soul_msg_id);
   }
 
   @Get()
