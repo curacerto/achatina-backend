@@ -20,6 +20,7 @@ import { PlayerModule } from './domain/player/player.module';
 import { OrderModule } from './domain/order/order.module';
 import { AdminModule } from './domain/admin/admin.module';
 import { PlayerSoulModule } from './domain/player-soul/player-soul.module';
+import { KitModule } from './domain/kit/kit.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { PlayerSoulModule } from './domain/player-soul/player-soul.module';
     OrderModule,
     AdminModule,
     PlayerSoulModule,
+    KitModule,
   ],
   controllers: [AppController],
   providers: [AppService],
