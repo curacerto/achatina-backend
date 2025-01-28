@@ -5,13 +5,14 @@ export class CreateOrderDto {
   @IsNumber()
   player_id: number;
 
-  @IsNotEmpty()
   @IsNumber()
   resource_id: number;
 
-  @IsNotEmpty()
   @IsNumber()
   kit_id: number;
+
+  @IsNumber()
+  dinosaur_id: number;
 
   @IsNotEmpty()
   @IsString()
