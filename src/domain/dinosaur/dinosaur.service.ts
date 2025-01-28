@@ -17,8 +17,14 @@ export class DinosaurService {
     return this.dinosaurRepository.save(createDinosaurDto);
   }
 
-  findAll(): Promise<Dinosaur[]> {
-    return this.dinosaurRepository.find();
+  findWithQuery(query: any): Promise<Dinosaur[]> {
+    const qb = this.dinosaurRepository.createQueryBuilder('dinosaur');
+
+    if (query.name) {
+      qb.andWhere('dinosaur.name LIKE :name', { name: `%${query.name}%` });
+    }
+
+    return qb.getMany();
   }
 
   findOne(id: number): Promise<Dinosaur> {

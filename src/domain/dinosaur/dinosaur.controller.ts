@@ -1,7 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { DinosaurService } from './dinosaur.service';
-import { CreateDinosaurDto } from './dto';
-import { UpdateDinosaurDto } from './dto';
+import { CreateDinosaurDto, UpdateDinosaurDto } from './dto';
 
 @Controller('dinosaur')
 export class DinosaurController {
@@ -14,8 +13,8 @@ export class DinosaurController {
   }
 
   @Get()
-  findAll() {
-    return this.dinosaurService.findAll();
+  findAll(@Query() query: any) {
+    return this.dinosaurService.findWithQuery(query);
   }
 
   @Get(':id')
