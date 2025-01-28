@@ -12,4 +12,7 @@ export class Dinosaur {
   @Column('int')
   stat_category_id: number;
 
+  @Column({ length: 256 })
+  icon: string;
+
 }
