@@ -20,4 +20,10 @@ export class KitService {
     const items = await this.kitItemRepository.find({ where: { kit_id: kit.id } });
     return { ...kit, items };
   }
+
+  async findById(id: number): Promise<KitWithItemsDto> {
+    const kit = await this.kitRepository.findOne({ where: { id } });
+    const items = await this.kitItemRepository.find({ where: { kit_id: kit.id } });
+    return { ...kit, items };
+  }
 }

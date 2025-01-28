@@ -8,8 +8,13 @@ export class KitController {
   ) {
   }
 
-  @Get(':name')
+  @Get('name/:name')
   getKitByName(name: string) {
     return this.kitService.findByName(name);
+  }
+
+  @Get(':id')
+  getKitById(id: number) {
+    return this.kitService.findById(id);
   }
 }
