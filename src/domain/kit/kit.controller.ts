@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { KitService } from './kit.service';
 
 @Controller('kit')
@@ -9,12 +9,12 @@ export class KitController {
   }
 
   @Get('name/:name')
-  getKitByName(name: string) {
+  getKitByName(@Param('name') name: string) {
     return this.kitService.findByName(name);
   }
 
   @Get(':id')
-  getKitById(id: number) {
+  getKitById(@Param('id') id: number) {
     return this.kitService.findById(id);
   }
 }

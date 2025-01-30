@@ -1,5 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
+import { join } from 'path';
 
 export const getTypeOrmConfig = (
   configService: ConfigService,
@@ -11,6 +12,6 @@ export const getTypeOrmConfig = (
   password: configService.get('DATABASE_PASSWORD'),
   database: configService.get('DATABASE_NAME'),
   entities: ['dist/domain/**/*.entity{.ts,.js}'],
-  // entities: [Resource], * Used to execute the initializer.ts
+  // entities: [join(__dirname, '..', '..', 'domain', '**', '*.entity{.ts,.js}')],
   synchronize: false,
 });

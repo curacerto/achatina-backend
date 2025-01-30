@@ -12,4 +12,7 @@ export class StatCategory {
   @Column('int')
   multiplier: number;
 
+  @Column('int')
+  base_price: number;
+
 }
