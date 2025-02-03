@@ -18,4 +18,7 @@ export class Dinosaur {
   @Column({ length: 256 })
   blueprint: string;
 
+  @Column({ length: 256 })
+  saddle: string;
+
 }
