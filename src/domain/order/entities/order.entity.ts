@@ -17,6 +17,9 @@ export class Order {
   @Column('int')
   dinosaur_id: number;
 
+  @Column('int')
+  saddle_id: number;
+
   @Column({ length: 256 })
   msg_id: string;
 

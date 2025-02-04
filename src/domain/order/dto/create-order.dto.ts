@@ -14,6 +14,9 @@ export class CreateOrderDto {
   @IsNumber()
   dinosaur_id: number;
 
+  @IsNumber()
+  saddle_id: number;
+
   @IsNotEmpty()
   @IsString()
   msg_id: string;
