@@ -17,6 +17,8 @@ export class CreateOrderDto {
   @IsNumber()
   saddle_id: number;
 
+  is_blueprint: boolean;
+
   @IsNotEmpty()
   @IsString()
   msg_id: string;
