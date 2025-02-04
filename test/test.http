@@ -77,3 +77,11 @@ Content-Type: application/json
 {
   "msg_id": "100"
 }
+
+### Patch order
+PATCH http://localhost:3000/order/29
+Content-Type: application/json
+
+{
+  "status": "map_pending"
+}
