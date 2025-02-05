@@ -79,6 +79,7 @@ export class PlayerService {
     receiverId: string,
     amount: number,
     transferType: string,
+    orderId: number,
   ): Promise<void> {
     console.log('Transfer', senderId, receiverId, amount, transferType);
     const sender: Player = await this.playerRepository.findOne({
@@ -114,6 +115,7 @@ export class PlayerService {
       receiverId,
       amount,
       transferType,
+      orderId
     );
   }
 }

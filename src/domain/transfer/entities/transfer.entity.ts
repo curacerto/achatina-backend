@@ -17,6 +17,9 @@ export class Transfer {
   @Column({ type: 'varchar', length: 100 })
   transfer_type: string;
 
+  @Column()
+  order_id: number;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
 }

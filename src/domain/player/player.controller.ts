@@ -3,7 +3,8 @@ import { PlayerService } from './player.service';
 
 @Controller('player')
 export class PlayerController {
-  constructor(private readonly playerService: PlayerService) {}
+  constructor(private readonly playerService: PlayerService) {
+  }
 
   @Get()
   findAll() {
@@ -31,12 +32,14 @@ export class PlayerController {
     @Body('receiverId') receiverId: string,
     @Body('amount') amount: number,
     @Body('transferType') transferType: string,
+    @Body('orderId') orderId: number,
   ) {
     await this.playerService.transfer(
       senderId,
       receiverId,
       amount,
       transferType,
+      orderId,
     );
   }
 }
