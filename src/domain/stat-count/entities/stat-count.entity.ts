@@ -10,4 +10,7 @@ export class StatCount {
 
   @Column()
   stat_count: number;
+
+  @Column()
+  base_price: number;
 }
