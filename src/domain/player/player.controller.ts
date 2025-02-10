@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PlayerService } from './player.service';
+import { CreatePlayerDto } from './dto';
 
 @Controller('player')
 export class PlayerController {
@@ -41,5 +42,10 @@ export class PlayerController {
       transferType,
       orderId,
     );
+  }
+
+  @Post()
+  create(@Body() createPlayerDto: CreatePlayerDto) {
+    return this.playerService.create(createPlayerDto);
   }
 }

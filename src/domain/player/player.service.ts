@@ -6,6 +6,7 @@ import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
 import { catchError, lastValueFrom } from 'rxjs';
 import { TransferService } from '../transfer/transfer.service';
+import { CreatePlayerDto } from './dto';
 
 @Injectable()
 export class PlayerService {
@@ -15,7 +16,8 @@ export class PlayerService {
     private readonly httpService: HttpService,
     private readonly configService: ConfigService,
     private readonly transferService: TransferService,
-  ) {}
+  ) {
+  }
 
   findAll(): Promise<Player[]> {
     return this.playerRepository.find();
@@ -115,7 +117,12 @@ export class PlayerService {
       receiverId,
       amount,
       transferType,
-      orderId
+      orderId,
     );
+  }
+
+  async create(createPlayerDto: CreatePlayerDto): Promise<Player> {
+    const player = this.playerRepository.create(createPlayerDto);
+    return await this.playerRepository.save(player);
   }
 }
