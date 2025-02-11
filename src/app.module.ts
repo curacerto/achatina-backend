@@ -21,6 +21,7 @@ import { OrderModule } from './domain/order/order.module';
 import { AdminModule } from './domain/admin/admin.module';
 import { PlayerSoulModule } from './domain/player-soul/player-soul.module';
 import { KitModule } from './domain/kit/kit.module';
+import { ItemModule } from './domain/item/item.module';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { KitModule } from './domain/kit/kit.module';
     AdminModule,
     PlayerSoulModule,
     KitModule,
+    ItemModule,
   ],
   controllers: [AppController],
   providers: [AppService],

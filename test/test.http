@@ -85,3 +85,15 @@ Content-Type: application/json
 {
   "status": "map_pending"
 }
+
+### Get all items
+GET http://localhost:3000/item
+
+### Get item by id
+GET http://localhost:3000/item/1
+
+### Get item by name
+GET http://localhost:3000/item/name/longneck
+
+### Get item by query params
+GET http://localhost:3000/item?name=longneck
