@@ -19,4 +19,7 @@ export class Item {
 
   @Column('int')
   price_bp: number;
+
+  @Column({ length: 256 })
+  category: string;
 }
