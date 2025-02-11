@@ -13,4 +13,10 @@ export class Item {
 
   @Column({ length: 256 })
   icon: string;
+
+  @Column('int')
+  price: number;
+
+  @Column('int')
+  price_bp: number;
 }
