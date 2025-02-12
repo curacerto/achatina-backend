@@ -20,6 +20,9 @@ export class Order {
   @Column('int')
   saddle_id: number;
 
+  @Column('int')
+  item_id: number;
+
   @Column()
   is_blueprint: boolean;
 

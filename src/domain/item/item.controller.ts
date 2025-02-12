@@ -9,12 +9,12 @@ export class ItemController {
   }
 
   @Get('name/:name')
-  getKitByName(@Param('name') name: string) {
+  getItemByName(@Param('name') name: string) {
     return this.itemService.findByName(name);
   }
 
   @Get(':id')
-  getKitById(@Param('id') id: number) {
+  getItemById(@Param('id') id: number) {
     return this.itemService.findById(id);
   }
 

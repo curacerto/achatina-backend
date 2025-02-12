@@ -17,6 +17,9 @@ export class CreateOrderDto {
   @IsNumber()
   saddle_id: number;
 
+  @IsNumber()
+  item_id: number;
+
   is_blueprint: boolean;
 
   @IsNotEmpty()
