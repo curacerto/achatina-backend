@@ -20,6 +20,18 @@ export class Transfer {
   @Column()
   order_id: number;
 
+  @Column()
+  source_before: number;
+
+  @Column()
+  source_after: number;
+
+  @Column()
+  target_before: number;
+
+  @Column()
+  target_after: number;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
 }
