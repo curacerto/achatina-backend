@@ -27,10 +27,10 @@ export class TransferService {
       where: { discordId: receiverId },
     });
 
-    const sourceBefore = sender.balance;
-    const sourceAfter = sender.balance - amount;
-    const targetBefore = receiver.balance;
-    const targetAfter = receiver.balance + amount;
+    const sourceBefore = sender.balance + amount;
+    const sourceAfter = sender.balance;
+    const targetBefore = receiver.balance + amount;
+    const targetAfter = receiver.balance;
 
     console.log('Transfer', senderId, receiverId, amount, transferType, sourceBefore, sourceAfter, targetBefore, targetAfter);
 
