@@ -13,7 +13,8 @@ import { Order } from './entities/order.entity';
 
 @Controller('order')
 export class OrderController {
-  constructor(private readonly orderService: OrderService) {}
+  constructor(private readonly orderService: OrderService) {
+  }
 
   @Post()
   create(@Body() createOrderDto: CreateOrderDto) {
