@@ -17,8 +17,11 @@ export class OrderService {
 
   async create(createOrderDto: CreateOrderDto): Promise<Order> {
     const order = this.orderRepository.create(createOrderDto);
-    await this.playerSoulCalculatorService.calculatePlayerSoul(order.player_id);
-    return await this.orderRepository.save(order);
+    const newOrder = await this.orderRepository.save(order);
+    if (order.kit_id === 1 || order.kit_id === 2) {
+      await this.playerSoulCalculatorService.calculatePlayerSoul(order.player_id);
+    }
+    return newOrder;
   }
 
   getStatusOrdersByPlayerId(
