@@ -3,12 +3,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import { Order } from './entities/order.entity';
 import { CreateOrderDto } from './dto';
+import { PlayerSoulCalculatorService } from '../player-soul/player-soul-calculator.service';
 
 @Injectable()
 export class OrderService {
   constructor(
     @InjectRepository(Order)
     private orderRepository: Repository<Order>,
+    private playerSoulCalculatorService: PlayerSoulCalculatorService,
   ) {
   }
 
@@ -17,6 +19,10 @@ export class OrderService {
     console.log('OrderCreated: ', orderCreated);
     const orderSaved = await this.orderRepository.save(orderCreated);
     console.log('OrderSaved: ', orderSaved);
+    if (orderSaved.kit_id === 1 || orderSaved.kit_id === 2) {
+      console.log('Calculating player soul');
+      await this.playerSoulCalculatorService.calculatePlayerSoul(orderSaved.player_id);
+    }
     return orderSaved;
   }
 
