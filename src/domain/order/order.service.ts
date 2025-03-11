@@ -13,8 +13,11 @@ export class OrderService {
   }
 
   async create(createOrderDto: CreateOrderDto): Promise<Order> {
+    console.log('CreateOrderDto: ', createOrderDto);
     const order = this.orderRepository.create(createOrderDto);
-    return await this.orderRepository.save(order);
+    console.log('Created CreateOrderDto: ', order);
+    const id = order.id;
+    return this.orderRepository.findOne({ where: { id } });
   }
 
   getStatusOrdersByPlayerId(
