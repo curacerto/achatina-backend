@@ -3,25 +3,18 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import { Order } from './entities/order.entity';
 import { CreateOrderDto } from './dto';
-import { PlayerSoulCalculatorService } from '../player-soul/player-soul-calculator.service';
-import { PlayerSoul } from '../player-soul/player-soul.entity';
 
 @Injectable()
 export class OrderService {
   constructor(
     @InjectRepository(Order)
     private orderRepository: Repository<Order>,
-    private playerSoulCalculatorService: PlayerSoulCalculatorService,
   ) {
   }
 
   async create(createOrderDto: CreateOrderDto): Promise<Order> {
     const order = this.orderRepository.create(createOrderDto);
-    const newOrder = await this.orderRepository.save(order);
-    if (order.kit_id === 1 || order.kit_id === 2) {
-      await this.playerSoulCalculatorService.calculatePlayerSoul(order.player_id);
-    }
-    return newOrder;
+    return await this.orderRepository.save(order);
   }
 
   getStatusOrdersByPlayerId(
