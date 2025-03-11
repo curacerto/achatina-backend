@@ -11,7 +11,7 @@ export const getTypeOrmConfig = (
   username: configService.get('DATABASE_USER'),
   password: configService.get('DATABASE_PASSWORD'),
   database: configService.get('DATABASE_NAME'),
-  //entities: ['dist/domain/**/*.entity{.ts,.js}'],
-  entities: [join(__dirname, '..', '..', 'domain', '**', '*.entity{.ts,.js}')],
+  entities: ['dist/domain/**/*.entity{.ts,.js}'],
+  //entities: [join(__dirname, '..', '..', 'domain', '**', '*.entity{.ts,.js}')],
   synchronize: false,
 });
