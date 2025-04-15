@@ -38,7 +38,14 @@ export class CreateOrderDto {
   @IsNumber()
   total: number;
 
+  @IsString()
+  map: string;
+
   @IsNotEmpty()
   @IsString()
   status: string;
+
+  @IsNotEmpty()
+  @IsString()
+  created_at: string;
 }
